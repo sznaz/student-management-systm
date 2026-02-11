@@ -8,7 +8,7 @@ class UserQueries {
   };
 
   public findByEmail = async (email: string): Promise<IUserModel | null> => {
-    return userModel.findOne({ email }).exec();
+    return userModel.findOne({ email }).select("+password").exec();
   };
 
   public findById = async (id: string): Promise<IUserModel | null> => {

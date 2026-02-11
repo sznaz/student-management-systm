@@ -18,7 +18,7 @@ const schema = new Schema<IUserModel>(
     name: { type: String, required: true },
     email: { type: String, unique: true, required: true },
     department: String,
-    password: { type: String, required: true },
+    password: { type: String, required: true, select: false },
     role: { type: String, enum: Object.values(UserRole), required: true }
   },
   { timestamps: true }
