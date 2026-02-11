@@ -34,5 +34,211 @@ http://localhost:5000/api
 
 ## 1️⃣ Clone Repository
 
-git clone <your-repo-url>
-cd machine_test
+git clone https://github.com/sznaz/student-management-systm
+cd student-management-systm
+
+## 2️⃣ Install Dependencies
+
+npm install
+
+
+## 3️⃣ Create `.env` File
+
+Create a `.env` file in root:
+
+PORT=5000
+MONGO_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_secret_key
+
+
+## 4️⃣ Run Development Server
+
+npm run dev
+
+Server will start at:
+
+http://localhost:5000
+
+
+
+---
+
+# 🔐 Authentication
+
+This API uses **JWT Authentication**.
+
+Pass token in request header:
+
+Authorization: Bearer <JWT_TOKEN>
+
+
+
+---
+
+# 📘 API Documentation
+
+---
+
+# 🔑 AUTH APIs
+
+---
+
+## 1️⃣ Register User
+POST /api/auth/register
+
+
+**Request Body**
+
+{
+  "name": "Admin User",
+  "email": "admin@gmail.com",
+  "password": "123456",
+  "role": "admin"
+}
+
+
+Success Response
+
+{
+  "error": false,
+  "statusCode": 200,
+  "data": {
+    "_id": "65f2a1b3c9e4a6d123456789",
+    "name": "Admin User",
+    "email": "admin@gmail.com",
+    "role": "admin"
+  },
+  "message": "Success"
+}
+
+
+## 2️⃣ Login
+POST /api/auth/login
+
+**Request Body**
+
+{
+  "email": "admin@gmail.com",
+  "password": "123456"
+}
+
+
+Response
+
+{
+  "error": false,
+  "statusCode": 200,
+  "data": {
+    "token": "JWT_TOKEN"
+  },
+  "message": "Success"
+}
+
+
+👨‍🏫 ADMIN APIs
+
+⚠ Requires Admin JWT Token
+
+Header:
+
+Authorization: Bearer <ADMIN_TOKEN>
+
+
+## 3️⃣ Add Student
+POST /api/admin/students
+
+**Request Body**
+
+{
+  "name": "John",
+  "email": "john@gmail.com",
+  "password": "123456",
+  "department": "Computer Science"
+}
+
+
+## 4️⃣ Assign Task
+POST /api/admin/tasks
+
+**Request Body**
+
+{
+  "studentId": "65f2a1b3c9e4a6d123456789",
+  "title": "Build API",
+  "description": "Implement CRUD using Node.js",
+  "dueTime": "2026-02-20T23:59:59.000Z"
+}
+
+Response
+
+{
+  "error": false,
+  "statusCode": 200,
+  "data": {
+    "_id": "65f3d21ac9e4a6d123456999",
+    "title": "Build API",
+    "description": "Implement CRUD using Node.js",
+    "dueTime": "2026-02-20T23:59:59.000Z",
+    "student": "65f2a1b3c9e4a6d123456789",
+    "status": "pending"
+  },
+  "message": "Success"
+}
+
+
+🎓 STUDENT APIs
+
+⚠ Requires Student JWT Token
+
+Header:
+
+Authorization: Bearer <STUDENT_TOKEN>
+
+
+## 5️⃣ Get My Tasks
+GET /api/student/tasks
+
+Response
+
+{
+  "error": false,
+  "statusCode": 200,
+  "data": [
+    {
+      "_id": "65f3d21ac9e4a6d123456999",
+      "title": "Build API",
+      "dueTime": "2026-02-20T23:59:59.000Z",
+      "status": "pending"
+    }
+  ],
+  "message": "Success"
+}
+
+
+## 6️⃣ Mark Task Completed
+PUT /api/student/tasks/:id
+
+
+🛡 Security
+
+Passwords hashed using bcrypt
+
+JWT-based authentication
+
+Role-based route protection
+
+No sessions or cookies used
+
+
+📁 Project Structure
+src/
+ ├── api/
+ │   ├── controllers/
+ │   ├── services/
+ │   ├── mongo/
+ │   └── dto/
+ ├── models/
+ ├── middlewares/
+ ├── config/
+ ├── app.ts
+ └── server.ts
