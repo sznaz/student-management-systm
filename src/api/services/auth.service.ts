@@ -37,7 +37,6 @@ class AuthService {
     password: string
   ): Promise<IResponse<{ token: string } | null>> => {
     const user: IUserModel | null = await this._userQueries.findByEmail(email);
-    console.log(user, "asdas");
     if (!user) {
       return Responses.notFound("User not found");
     }
