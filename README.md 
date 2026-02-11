@@ -1,0 +1,38 @@
+# 📚 Student Management System API
+
+A basic Student Management System built using:
+
+- Node.js
+- Express.js
+- TypeScript
+- MongoDB Atlas
+- JWT Authentication
+- Role-based Authorization (Admin / Student)
+
+---
+
+# 🚀 Base URL
+
+http://localhost:5000/api
+
+
+---
+
+# 🏗️ Architecture
+
+
+- Controllers handle HTTP requests
+- Services contain business logic
+- Queries handle database operations
+- MongoDB Atlas used as database
+- JWT used for authentication
+- No sessions or cookies used
+
+---
+
+# ⚙️ Setup Instructions
+
+## 1️⃣ Clone Repository
+
+git clone <your-repo-url>
+cd machine_test
