@@ -235,10 +235,11 @@ src/
  ├── api/
  │   ├── controllers/
  │   ├── services/
- │   ├── mongo/
+ │   ├── queries/
  │   └── dto/
  ├── models/
  ├── middlewares/
  ├── config/
  ├── app.ts
  └── server.ts
+ └── types.ts
